@@ -21,6 +21,7 @@ sdist/
 var/
 bin/
 include/
+man/
 *.egg-info/
 .installed.cfg
 *.egg
