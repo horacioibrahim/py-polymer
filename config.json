@@ -1,0 +1,35 @@
+{
+  "authors": [
+    "Horacio Ibrahim <horacioibrahim@gmail.com>"
+  ],
+  "element": {
+    "targer_dir": "../elements",
+    "prefix": "ds-"
+  },
+  "bower": {
+    "description": "This element provides solution for the problem.",
+    "keywords": [
+      "web-component",
+      "web-components",
+      "polymer"
+    ],
+    "main": ["seed-element.html"],
+    "license": "MIT",
+    "homepage": "http://horacioibrahim.github.io/pyPolymer",
+    "ignore": [
+      "/.*",
+      "/tests/"
+    ],
+    "dependencies": {
+      "polymer": "Polymer/polymer#^1.0.0"
+    },
+    "devDependencies": {
+      "web-component-tester": "*"
+    },
+    "private": false,
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/foo/bar.git"
+    }
+  }
+}
