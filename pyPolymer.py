@@ -390,7 +390,6 @@ class PolymerElement(object):
 if __name__ == '__main__':
     args = parser.parse_args()
     args = pos_parser(args)
-    bower = Bower(args.__dict__)
     # if args have name is due the user have passed --create as command line.
     if args.name:
         el = PolymerElement(args.name)
