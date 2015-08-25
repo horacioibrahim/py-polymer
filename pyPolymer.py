@@ -26,6 +26,7 @@ import argparse
 import json
 import os
 import urllib2
+import sys
 
 parser = argparse.ArgumentParser(description='Task manager')
 parser.add_argument('--create', '-c', dest='name', type=str,
@@ -60,6 +61,72 @@ parser.add_argument('--devDependencies', '-e', type=dict,
 
 # For updates. Use the options `--create` with `filename` is no sense.
 # parser.add_argument('filename', help='Path of the custom element existent.')
+
+# BOWER SPEC
+# See more: https://github.com/bower/bower.json-spec
+BOWER = {
+    'name': {
+        'required': True,
+        'type': str
+    },
+    'description': {
+        'required': False,
+        'type': str
+    },
+    'version': { # This is deprecated
+        'required': False
+    },
+    'main': {
+        'required': False,
+        'type': list
+    },
+    'moduleType': {
+        'required': False,
+        'type': list
+    },
+    'license': {
+        # This is can be identifier (https://spdx.org/licenses/) or url.
+        'required': False,
+        'type': str
+    },
+    'ignore': {
+        'required': False,
+        'type': list
+    },
+    'keywords': {
+        'required': False,
+        'type': list
+    },
+    'authors': {
+        'required': False,
+        'type': list
+    },
+    'homepage': {
+        'required': False,
+        'type': str
+    },
+    'repository': {
+        'required': False,
+        'type': dict
+    },
+    'dependencies': {
+        'required': False,
+        'type': dict
+    },
+    'devDependencies': {
+        'required': False,
+        'type': dict
+    },
+    'resolutions': {
+        'required': False,
+        'type': dict
+    },
+    'private': {
+        'required': False,
+        'type': bool
+    },
+}
+
 
 def __read_json_file(path_file):
     """Retuns a dictionary after read the content from json file found in
@@ -150,71 +217,6 @@ def pos_parser(args):
         del args.__dict__['mail']
 
     return args
-
-# BOWER SPEC
-# See more: https://github.com/bower/bower.json-spec
-BOWER = {
-    'name': {
-        'required': True,
-        'type': str
-    },
-    'description': {
-        'required': False,
-        'type': str
-    },
-    'version': { # This is deprecated
-        'required': False
-    },
-    'main': {
-        'required': False,
-        'type': list
-    },
-    'moduleType': {
-        'required': False,
-        'type': list
-    },
-    'license': {
-        # This is can be identifier (https://spdx.org/licenses/) or url.
-        'required': False,
-        'type': str
-    },
-    'ignore': {
-        'required': False,
-        'type': list
-    },
-    'keywords': {
-        'required': False,
-        'type': list
-    },
-    'authors': {
-        'required': False,
-        'type': list
-    },
-    'homepage': {
-        'required': False,
-        'type': str
-    },
-    'repository': {
-        'required': False,
-        'type': dict
-    },
-    'dependencies': {
-        'required': False,
-        'type': dict
-    },
-    'devDependencies': {
-        'required': False,
-        'type': dict
-    },
-    'resolutions': {
-        'required': False,
-        'type': dict
-    },
-    'private': {
-        'required': False,
-        'type': bool
-    },
-}
 
 class Bower(object):
 
