@@ -85,6 +85,20 @@ class PolymerElementTests(unittest.TestCase):
         self.assertTrue(os.path.exists(demo_dir))
         self.assertTrue(os.path.exists(test_dir))
 
+    @unittest.skip('skipped for travis')
+    def test_create_no_name(self):
+        """Tests if directory was created.
+        """
+        args = parser.parse_args(['--private', False])
+        args = pos_parser(args)
+        el = PolymerElement(args.name)
+        el.create()
+        self.target_dir = os.path.abspath('.')
+        demo_dir = self.target_dir + '/demo'
+        test_dir = self.target_dir + '/test'
+        self.assertTrue(os.path.exists(self.target_dir))
+        self.assertTrue(os.path.exists(demo_dir))
+        self.assertTrue(os.path.exists(test_dir))
 
 if __name__ == '__main__':
     unittest.main()

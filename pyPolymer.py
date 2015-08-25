@@ -67,8 +67,13 @@ def __read_json_file(path_file):
 
     @param path_file: where the file is placed.
     """
-    fp = open(path_file, 'r')
-    data = fp.read()
+    try:
+        fp = open(path_file, 'r')
+        data = fp.read()
+    except IOError, e:
+        content = urllib2.urlopen('https://raw.githubusercontent.com/horacioibrahim/py-polymer/master/config.json')
+        data = content.read()
+
     return json.loads(data)
 
 def __mixed_config(args):
@@ -288,7 +293,11 @@ class PolymerElement(object):
     def __str__(self):
         return self.name
 
-    def __init__(self, name, destination_path='_build', **kwargs):
+    def __init__(self, name=None, destination_path='_build', **kwargs):
+        if name is None:
+            name = raw_input("Type a name for new element [new-element]:")
+            if name == '':
+                name = 'new-element'
         self.name = name
         self.destination_path = os.path.abspath(destination_path)
 
