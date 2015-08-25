@@ -5,7 +5,11 @@ elements are based in the seed-element created by @addyosmani in
 
 ## Quick usage
 
-python manage.py --create iron-element
+curl https://raw.githubusercontent.com/horacioibrahim/py-polymer/master/pyPolymer.py | python -
+
+or clone it and:
+
+python pyPolymer.py --create iron-element
 
 ## License
 
