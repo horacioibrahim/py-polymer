@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # manage.py is A manager that quickly creates an easy way custom element with
 # Polymer. The elements are based in the seed-element created
@@ -31,6 +32,8 @@ import sys
 parser = argparse.ArgumentParser(description='Task manager')
 parser.add_argument('--create', '-c', dest='name', type=str,
             help='Creates new custom element.')
+parser.add_argument('--install_dir', '-I', dest='destination_path', type=str,
+            help='Place where will install the folder.')
 # Metadata: description, author name, author e-mail, username's github.
 parser.add_argument('--description', '-d', type=str,
             default='This element X solve the problem Y.',
@@ -54,7 +57,7 @@ parser.add_argument('--private', '-p', type=bool, default=False,
             help='If set to true, Bower will refuse to publish it.')
 parser.add_argument('--repository', '-r', type=dict,
             help='Repository type and url.')
-parser.add_argument('--dependencies', '-D', type=dict,
+parser.add_argument('--dependencies', '-s', type=dict,
             help='Key/value with dependencies.')
 parser.add_argument('--devDependencies', '-e', type=dict,
             help='Key/value with dependencies for developers.')
@@ -295,13 +298,18 @@ class PolymerElement(object):
     def __str__(self):
         return self.name
 
-    def __init__(self, name=None, destination_path='_build', **kwargs):
+    def __init__(self, **kwargs):
+        name = kwargs.get('name', None)
         if name is None:
             name = raw_input("Type a name for new element [new-element]:")
             if name == '':
                 name = 'new-element'
+
         self.name = name
-        self.destination_path = os.path.abspath(destination_path)
+
+        # Set Place
+        path = kwargs.get('destination_path', '_build')
+        self.destination_path = os.path.abspath(path)
 
     def create(self):
         """ Creates a directory of the new element.
@@ -392,5 +400,5 @@ class PolymerElement(object):
 if __name__ == '__main__':
     args = parser.parse_args()
     args = pos_parser(args)
-    el = PolymerElement(args.name)
+    el = PolymerElement(**args.__dict__)
     el.create()
