@@ -348,7 +348,6 @@ class PolymerElement(object):
             os.chdir(self._destination)
 
         # creates bower.json
-        print "current dir", os.path.abspath(os.curdir)
         b = Bower(self.args.__dict__)
         bower_file = open('bower.json', 'w')
         bower_file.write(b.to_json())

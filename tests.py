@@ -76,7 +76,7 @@ class PolymerElementTests(unittest.TestCase):
         """
         args = parser.parse_args(['--create', 'ds-new'])
         args = pos_parser(args)
-        el = PolymerElement(args.name)
+        el = PolymerElement(args, **args.__dict__)
         el.create()
         self.target_dir = os.path.abspath('.')
         demo_dir = self.target_dir + '/demo'
@@ -85,13 +85,13 @@ class PolymerElementTests(unittest.TestCase):
         self.assertTrue(os.path.exists(demo_dir))
         self.assertTrue(os.path.exists(test_dir))
 
-    @unittest.skip('skipped for travis')
+    #@unittest.skip('skipped for travis')
     def test_create_no_name(self):
         """Tests if directory was created.
         """
         args = parser.parse_args(['--private', False])
         args = pos_parser(args)
-        el = PolymerElement(args.name)
+        el = PolymerElement(args, **args.__dict__)
         el.create()
         self.target_dir = os.path.abspath('.')
         demo_dir = self.target_dir + '/demo'

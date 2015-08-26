@@ -17,8 +17,8 @@ Now the iron-myElement is placed in bower_components/
 
 ## Usage with config.json
 The config.json help us to NOT have that to pass repeated values
-as authors, mail address, prefix, license, etc. all times that we run 
-the pyPolymer. 
+as authors, mail address, prefix, license, main, dependencies, etc. all times 
+that we run the pyPolymer. 
 
 ## Add an alias
 vim ~/.bashrc (or ~/.bash_profile)
