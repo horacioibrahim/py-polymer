@@ -24,7 +24,7 @@ class BowerTests(unittest.TestCase):
         pass
 
     def test_json(self):
-        args = parser.parse_args()
+        args = parser.parse_args(['--create', 'ds-one'])
         args = pos_parser(args)
         # simulate argument from CLI
         args.__dict__['name'] = 'iron-element'
@@ -36,7 +36,7 @@ class BowerTests(unittest.TestCase):
         self.assertIsInstance(data, dict)
 
     def test_get_bower(self):
-        args = parser.parse_args()
+        args = parser.parse_args(['--create', 'ds-two'])
         args = pos_parser(args)
         # simulate argument from CLI
         args.__dict__['name'] = 'iron-element'
@@ -44,7 +44,7 @@ class BowerTests(unittest.TestCase):
         self.assertIsInstance(bower.bower, dict)
 
     def test_setter_bower(self):
-        args = parser.parse_args()
+        args = parser.parse_args(['--create', 'ds-three'])
         args = pos_parser(args)
         # simulate argument from CLI
         args.__dict__['name'] = 'iron-element'
