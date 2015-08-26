@@ -207,6 +207,8 @@ def pos_parser(args):
         concatenates both within list `authors` removing `author` and
         `mail` of the args Namespace.
 
+        3) If user not provided `--create` with `name`. Prompt for a name.
+
     @param args: args after ran parser.parse_args()
     @type args: Namespace
     """
@@ -218,6 +220,13 @@ def pos_parser(args):
                 author=args.author, email=args.mail))
         del args.__dict__['author']
         del args.__dict__['mail']
+
+    # fix if without name (--create)
+    if 'name' not in args or args.name is None:
+        name = raw_input("Type a name for new element [new-element]:")
+        if name == '':
+            name = 'new-element'
+        args.__dict__['name'] = name
 
     return args
 
@@ -237,6 +246,8 @@ class Bower(object):
     def bower(self, value):
         """ Sets bower attribute. """
         loaded_json = self._validate(value)
+        # set main
+        loaded_json['main'] = [loaded_json["name"] + ".html"]
         self._bower = loaded_json
 
     @bower.deleter
@@ -298,13 +309,9 @@ class PolymerElement(object):
     def __str__(self):
         return self.name
 
-    def __init__(self, **kwargs):
+    def __init__(self, args, **kwargs):
+        self.args = args
         name = kwargs.get('name', None)
-        if name is None:
-            name = raw_input("Type a name for new element [new-element]:")
-            if name == '':
-                name = 'new-element'
-
         self.name = name
 
         # Set Place
@@ -339,6 +346,13 @@ class PolymerElement(object):
             fp.write(content)
             fp.close()
             os.chdir(self._destination)
+
+        # creates bower.json
+        print "current dir", os.path.abspath(os.curdir)
+        b = Bower(self.args.__dict__)
+        bower_file = open('bower.json', 'w')
+        bower_file.write(b.to_json())
+        bower_file.close()
 
         print "New custom element create with successful %s" % (self._destination)
 
@@ -400,5 +414,5 @@ class PolymerElement(object):
 if __name__ == '__main__':
     args = parser.parse_args()
     args = pos_parser(args)
-    el = PolymerElement(**args.__dict__)
+    el = PolymerElement(args, **args.__dict__)
     el.create()

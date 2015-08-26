@@ -3,7 +3,7 @@
     "Horacio Ibrahim <horacioibrahim@gmail.com>"
   ],
   "element": {
-    "targer_dir": "../elements",
+    "targer_dir": "bower_components",
     "prefix": "ds-"
   },
   "bower": {

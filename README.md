@@ -8,19 +8,21 @@ elements are based in the seed-element created by @addyosmani in
 
 ## Quick usage
 
+```
 git clone https://github.com/horacioibrahim/py-polymer.git
 python pyPolymer.py --create iron-myElement -I bower_components/
+```
 
 Now the iron-myElement is placed in bower_components/
 
 ## Usage with config.json
-The config.json help us for NOT have that to pass authors, mail address, prefix,
-license, etc. all times.
+The config.json help us to NOT have that to pass repeated values
+as authors, mail address, prefix, license, etc. all times that we run 
+the pyPolymer. 
 
-## Add your env PATH
-vim ~/.bashrc (or bash_profile)
+## Add an alias
+vim ~/.bashrc (or ~/.bash_profile)
 alias pyPolymer="FOLDER_WHERE_CLONED/py-polymer/pyPolymer.py"
 
 ## License
-
 py-polymer is available under the [MIT license](http://opensource.org/licenses/MIT).
