@@ -226,6 +226,7 @@ def pos_parser(args):
         name = raw_input("Type a name for new element [new-element]:")
         if name == '':
             name = 'new-element'
+
         args.__dict__['name'] = name
 
     return args
@@ -315,9 +316,12 @@ class PolymerElement(object):
         self.name = name
 
         # Set Place
-        path = kwargs.get('destination_path', '_build')
-        self.destination_path = os.path.abspath(path)
-
+        path = kwargs.get('destination_path', None)
+        if path is None:
+            self.destination_path = os.path.join(os.path.abspath('.'), '_build')
+        else:
+            self.destination_path = os.path.abspath(path)
+            
     def create(self):
         """ Creates a directory of the new element.
         """

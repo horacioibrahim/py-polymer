@@ -21,8 +21,10 @@ as authors, mail address, prefix, license, main, dependencies, etc. all times
 that we run the pyPolymer. 
 
 ## Add an alias
+```
 vim ~/.bashrc (or ~/.bash_profile)
 alias pyPolymer="FOLDER_WHERE_CLONED/py-polymer/pyPolymer.py"
+```
 
 ## License
 py-polymer is available under the [MIT license](http://opensource.org/licenses/MIT).

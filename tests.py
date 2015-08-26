@@ -3,6 +3,7 @@ import os
 import time
 import json
 import argparse
+import shutil
 from pyPolymer import Bower, parser, pos_parser, PolymerElement
 
 class GeneralTests(unittest.TestCase):
@@ -65,12 +66,6 @@ class BowerTests(unittest.TestCase):
 
 class PolymerElementTests(unittest.TestCase):
 
-    def tearDown(self):
-        import shutil
-
-        if self.target_dir:
-            shutil.rmtree(self.target_dir)
-
     def test_create(self):
         """Tests if directory was created.
         """
@@ -85,7 +80,7 @@ class PolymerElementTests(unittest.TestCase):
         self.assertTrue(os.path.exists(demo_dir))
         self.assertTrue(os.path.exists(test_dir))
 
-    #@unittest.skip('skipped for travis')
+    @unittest.skip('skipped for travis')
     def test_create_no_name(self):
         """Tests if directory was created.
         """
